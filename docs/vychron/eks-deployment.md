@@ -1,4 +1,4 @@
-# vychron EKS Deployment Guide — test-eks
+# vychron EKS Deployment Guide — baba-eks
 
 ## What was provisioned
 
@@ -7,8 +7,8 @@ vychron has set up the following for your EKS deployment:
 - **ECR repositories** — one per detected service (see Terraform outputs)
 - **ESO IRSA role** — External Secrets Operator reads AWS Secrets Manager without static keys
 - **GitHub Actions ECR role** — CI/CD pushes Docker images using OIDC (no AWS secrets in GitHub)
-- **GitOps repo** — `hireaviraj/test-k8s-config` contains your Helm chart and ArgoCD manifests
-- **ArgoCD** — watches the gitops repo and syncs your app to EKS automatically
+- **GitOps repo** — created later by vychron Deploy App after images are available
+- **ArgoCD** — configured later by vychron Deploy App to watch the GitOps repo
 
 ## GitHub Repository Setup
 
@@ -18,7 +18,7 @@ After merging this PR, set the following in your repo's **Variables** (Settings 
 |---|---|---|
 | *(pre-filled in workflow)* | *(already set in the workflow file)* | — |
 
-> The IAM role ARN, ECR registry, and gitops repo are already embedded in the workflow file.
+> The IAM role ARN and ECR registry are already embedded in the workflow file.
 > No GitHub Variables needed — everything is pre-configured.
 
 ## IAM Trust Policy (verify after apply)
@@ -60,7 +60,7 @@ OIDC → assume vychron-github-ecr role (no stored AWS secrets)
   ↓
 ECR login → docker build → docker push (tag: sha-<commit>)
   ↓
-vychron app deploy updates hireaviraj/test-k8s-config using the saved GitHub auth session
+vychron Deploy App creates/updates the GitOps repo using the saved GitHub auth session
   ↓
 ArgoCD detects change → syncs → rolling update on EKS
   ↓
@@ -80,4 +80,4 @@ Pod running new image ✅
 
 **ArgoCD not syncing**
 - Check ArgoCD UI: the app should show as `OutOfSync` then `Synced` within 3 minutes
-- If stuck: `argocd app sync test-eks` manually
+- If stuck: `argocd app sync baba-eks` manually
