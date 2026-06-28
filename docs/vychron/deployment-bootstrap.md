@@ -1,6 +1,6 @@
 # vychron Deployment Bootstrap
 
-- App: baba-eks
+- App: kghfgkgkjh-eks
 - Cloud: AWS
 - Model: EKS
 - Region: us-east-1
