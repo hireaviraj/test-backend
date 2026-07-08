@@ -1,6 +1,6 @@
 # vychron Deployment Bootstrap
 
-- App: aviraj-vychron-eks
+- App: test-eks
 - Cloud: AWS
 - Model: EKS
 - Region: us-east-1
