@@ -1,4 +1,4 @@
-# vychron EKS Deployment Guide — svczvvccx-eks
+# vychron EKS Deployment Guide — test-eks
 
 ## What was provisioned
 
@@ -80,4 +80,4 @@ Pod running new image ✅
 
 **ArgoCD not syncing**
 - Check ArgoCD UI: the app should show as `OutOfSync` then `Synced` within 3 minutes
-- If stuck: `argocd app sync svczvvccx-eks` manually
+- If stuck: `argocd app sync test-eks` manually
