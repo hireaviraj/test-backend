@@ -18,14 +18,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        include: [{"name": "test-backend", "path": "test-backend", "ecr_repository": "test/test-backend"}]
+        include: [{"name": "test-backend", "path": "test-backend", "ecr_repository": "ddsfsfd/test-backend"}]
     steps:
       - uses: actions/checkout@v4
 
       - name: Configure AWS credentials via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::767397870266:role/test-eks-github-ecr-969a5fdf
+          role-to-assume: arn:aws:iam::767397870266:role/ddsfsfd-eks-github-ecr-969a5fdf
           aws-region: us-east-1
 
       - name: Login to Amazon ECR
